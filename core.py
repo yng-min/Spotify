@@ -21,9 +21,6 @@ print('=' * 25)
 try:
     searchResult = sp.search(artist_search, type='artist')
 
-    # artistReslut = searchResult['artists']['items'][0]
-    # print(artistReslut)
-
     artistLINK = searchResult['artists']['items'][0]['external_urls']['spotify']
     print('Spotify URL: ' + artistLINK)
 
@@ -45,6 +42,7 @@ try:
 
     print('Artist Top Tracks: ↓')
     trackResult = sp.artist_top_tracks(artistID)
+    print(trackResult)
     i = 0
     for track in trackResult['tracks'][:10]:
         i += 1
