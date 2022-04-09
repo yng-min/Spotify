@@ -33,9 +33,6 @@ try:
     artistID = searchResult['artists']['items'][0]['id']
     print('Artist ID: ' + artistID)
 
-    artistIMAGE = searchResult['artists']['items'][0]['images'][0]['url']
-    print('Artist Profile: ' + artistIMAGE)
-
     artistGENRES = searchResult['artists']['items'][0]['genres']
     genreMSG = ', '.join(genre for genre in artistGENRES[:5])
     print('Artist Genres: ' + genreMSG)
@@ -43,14 +40,18 @@ try:
     artistFOLLOWERS = searchResult['artists']['items'][0]['followers']['total']
     print('Artist Followers: ' + str(artistFOLLOWERS))
 
+    artistIMAGE = searchResult['artists']['items'][0]['images'][0]['url']
+    print('Artist IMAGE: ' + artistIMAGE)
+
     print('Artist Top Tracks: ↓')
     trackResult = sp.artist_top_tracks(artistID)
     i = 0
     for track in trackResult['tracks'][:10]:
         i += 1
         print(f'{i}/10')
+        print('Spotify URL: ' + track['external_urls']['spotify'])
         print('Track Name: ' + track['name'])
-        print('Track URL: ' + track['album']['images'][0]['url'])
+        print('Track IMAGE: ' + track['album']['images'][0]['url'])
 
 except:
     print('Artist is not found.')
