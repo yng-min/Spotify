@@ -1,26 +1,21 @@
 # -*- coding: utf-8 -*-
 
-# 패키지 라이브러리 설정
 import json
-
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-try: # config.json / Config 파일 불러오기
+try:
     with open(r'./config.json', 'rt', encoding='UTF8') as configJson:
         config = json.load(configJson)
 except:
     print('config.json is not loaded.')
 
-client_id = config['clientID']
-client_secret = config['secretClientID']
 client_credentials_manager = SpotifyClientCredentials(
-    client_id = client_id,
-    client_secret = client_secret
+    client_id = config['clientID'],
+    client_secret = config['secretClientID']
 )
 sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 artist_search = str(input('Enter artist name: '))
-
 print('=' * 25)
 
 try:
